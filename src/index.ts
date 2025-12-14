@@ -1,5 +1,6 @@
 import express from "express";
 import type { Request, Response, NextFunction, Express } from "express";
+import { errorHandler } from "./middlewares/errorHandler";
 const app: Express = express();
 
 app.use(express.json());
@@ -15,6 +16,8 @@ app.get(
     });
   }
 );
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Server is up and running on port ${port}`);
